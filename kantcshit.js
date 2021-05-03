@@ -39,16 +39,28 @@
 
           switch(c) {
             case 'br':
-                vp.style.filter = `brightness(${this.value}%)`;
+                let br_flt = vp.style.filter;
+                const br_reg = /brightness\(\d*\%\)/
+                br_flt = br_flt.replace(br_reg, '');
+                vp.style.filter = `${br_flt} brightness(${this.value}%)`;
                 break;
             case 'st':
-                vp.style.filter = `saturate(${this.value}%)`;
+                let st_flt = vp.style.filter;
+                const st_reg = /saturate\(\d*\%\)/
+                st_flt = st_flt.replace(st_reg, '');
+                vp.style.filter = `${st_flt} saturate(${this.value}%)`;
                 break;
             case 'hue':
-                vp.style.filter = `hue-rotate(${this.value}deg)`;
+                let hue_flt = vp.style.filter;
+                const hue_reg = /hue-rotate\(\d*deg\)/
+                hue_flt = hue_flt.replace(hue_reg, '');
+                vp.style.filter = `${hue_flt} hue-rotate(${this.value}deg)`;
                 break;
             case 'ct':
-                vp.style.filter = `contrast(${this.value}%)`;
+                let ct_flt = vp.style.filter;
+                const ct_reg = /contrast\(\d*\%\)/
+                ct_flt = ct_flt.replace(ct_reg, '');
+                vp.style.filter = `${ct_flt} contrast(${this.value}%)`;
                 break;
 
           }
