@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Kant C Shit
 // @namespace    kantcshit
-// @version      0.1
+// @version      0.2
 // @description  Adjust brightness and contrast in YouTube Videos, Vimeo, Netflix, HBO, Prime video, or any other site with a video on it
 // @author       Adriano Galello
 // @homepage     https://gdi3d.github.io/change-youtube-videos-brightness/
