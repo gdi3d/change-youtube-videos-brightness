@@ -103,3 +103,8 @@ main > .tagline {
     -ms-user-select: none;
     user-select: none;
 }
+
+.icons-social img {
+    height: 3em;
+    padding: 10px;
+}
