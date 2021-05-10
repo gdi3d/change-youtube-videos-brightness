@@ -6,6 +6,8 @@
 // @author       Adriano Galello
 // @homepage     https://gdi3d.github.io/change-youtube-videos-brightness/
 // @match        *://www.youtube.com/watch*
+// @match        *://www.primevideo.com/detail/*
+// @match        *://vimeo.com/*
 // @icon         https://www.google.com/s2/favicons?domain=youtube.com
 // @updateURL    https://github.com/gdi3d/change-youtube-videos-brightness/raw/master/kantcshit-userscript.js
 // @compatible chrome
