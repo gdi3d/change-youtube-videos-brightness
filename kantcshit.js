@@ -9,8 +9,19 @@
     if(document.getElementsByTagName("video").length == 0) {
         alert("Oh no!, couldn't detect video in this page.\r\nIf you think this is an error open a ticket at https://github.com/gdi3d/change-youtube-videos-brightness/issues/new");
         throw new Error("No video tag detected!. WTF!!??!")
+    } else if (document.getElementsByTagName("video").length == 1) {
+        var vp = document.getElementsByTagName("video")[0];
     } else if (document.getElementsByTagName("video").length > 1) {
-        alert("Mmm, we detected more than one video in this page. I don't know what to do!. If you think this is an error open a ticket at https://github.com/gdi3d/change-youtube-videos-brightness/issues/new");
+        for (let ve of document.getElementsByTagName("video")) {
+            if (ve.src.startsWith('blob:')){
+                var vp = ve;
+                break;
+            }
+        }
+    }
+
+    if (vp === undefined) {
+        alert("Mmm, we couldn't detect where the video is at. I don't know what to do!. If you think this is an error open a ticket at https://github.com/gdi3d/change-youtube-videos-brightness/issues/new");
         throw new Error("More than one video tag detected -.-")
     }
 
@@ -23,7 +34,7 @@
     // prefix for the controlers
     // st_slider, hue_slider, etc...
     const controls = ['st', 'hue', 'ct', 'br'];
-    let vp = document.getElementsByTagName("video")[0];
+    
 
 
     // set actions to sliders and reset buttons

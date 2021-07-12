@@ -29,8 +29,19 @@
     if(document.getElementsByTagName("video").length == 0) {
         alert("Oh no!, couldn't detect video in this page.\r\nIf you think this is an error open a ticket at https://github.com/gdi3d/change-youtube-videos-brightness/issues/new");
         throw new Error("No video tag detected!. WTF!!??!")
+    } else if (document.getElementsByTagName("video").length == 1) {
+        var vp = document.getElementsByTagName("video")[0];
     } else if (document.getElementsByTagName("video").length > 1) {
-        alert("Mmm, we detected more than one video in this page. I don't know what to do!. If you think this is an error open a ticket at https://github.com/gdi3d/change-youtube-videos-brightness/issues/new");
+        for (let ve of document.getElementsByTagName("video")) {
+            if (ve.src.startsWith('blob:')){
+                var vp = ve;
+                break;
+            }
+        }
+    }
+
+    if (vp === undefined) {
+        alert("Mmm, we couldn't detect where the video is at. I don't know what to do!. If you think this is an error open a ticket at https://github.com/gdi3d/change-youtube-videos-brightness/issues/new");
         throw new Error("More than one video tag detected -.-")
     }
 
@@ -38,17 +49,17 @@
     let kantcshit_container = document.createElement("div");
     kantcshit_container.id = 'container_kantcshit';
     kantcshit_container.innerHTML = html;
-    document.body.appendChild(kantcshit_container);
+    document.body.appendChild(kantcshit_container);  
 
     // prefix for the controlers
     // st_slider, hue_slider, etc...
     const controls = ['st', 'hue', 'ct', 'br'];
-    let vp = document.getElementsByTagName("video")[0];
+    
 
 
     // set actions to sliders and reset buttons
     for (let c of controls) {
-
+        
         let slider = document.getElementById(`${c}_slider`);
         let val = document.getElementById(`${c}_val`);
         val.innerHTML = slider.value; // Display the default slider value
@@ -84,37 +95,37 @@
                 break;
 
           }
-
+          
         }
 
         // reset buttons
         let r_btn = document.getElementById(`${c}_reset`);
         switch(c) {
             case 'br':
-
+                
                 r_btn.onclick = function(){
                     vp.style.filter = "brightness(100%)";
                     slider.value = 100;
                     slider.dispatchEvent(new Event('input'));
                 };
-
+                
                 break;
             case 'st':
-
+                
                 r_btn.onclick = function(){
                     vp.style.filter = "saturate(100%)";
                     slider.value = 100;
                     slider.dispatchEvent(new Event('input'));
                 };
-
+                
                 break;
 
             case 'hue':
-
+                
                 r_btn.onclick = function(){
                     vp.style.filter = "hue-rotate(0deg)";
                     slider.value = 0;
-                    slider.dispatchEvent(new Event('input'));
+                    slider.dispatchEvent(new Event('input')); 
                 };
 
                 break;
@@ -123,9 +134,9 @@
                 r_btn.onclick = function(){
                     vp.style.filter = "contrast(100%)";
                     slider.value = 100;
-                    slider.dispatchEvent(new Event('input'));
+                    slider.dispatchEvent(new Event('input')); 
                 };
-
+                
                 break;
 
       }
@@ -146,10 +157,10 @@
 
     // hover to display b.deo top right icon
     // that allows the user to open the effect panel
-    vp.addEventListener('mouseenter', function(){
+    vp.addEventListener('mouseenter', function(){ 
 
         if(document.getElementById('panel_kantcshit').style.display == 'none') {
-            document.getElementById('open_kantcshit').style.display = 'block';
+            document.getElementById('open_kantcshit').style.display = 'block';    
         }
     });
 })();
